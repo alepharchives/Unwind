@@ -29,3 +29,8 @@ Where some_exception is a void *. It is undefined as to the outcome of throwing
 an exception from outside a TRY construct. Currently it is only possible to use 
 unwind with single threaded code, but all that is needed for multithreaded 
 usage is that the variables in unwind.c become thread local.
+
+From within the except clause of a try block you can rethrow the previous 
+exception with:
+
+RETHROW;
