@@ -17,7 +17,7 @@
 
 CMAKE_MINIMUM_REQUIRED(VERSION 2.8)
 
-SET(UnwindSources unwind)
+SET(UnwindSources unwind exceptions)
 
 INCLUDE_DIRECTORIES("${PROJECT_SOURCE_DIR}")
 
