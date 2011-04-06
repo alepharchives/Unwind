@@ -1,0 +1,31 @@
+Unwind is a lightweight exceptions library for C.
+
+Usage
+=====
+
+It has 2 constructs. The first should be fairly familiar:
+
+TRY {
+    /* Do something here that might throw an exception */
+} EXCEPT(exc) {
+    /* An exception occured, it is placed into the variable exc. Any exceptions 
+       that occur here are handled in the next TRY construct upward. */
+} END_TRY
+
+The second may seem a little quirky:
+
+AFTER {
+    /* Do something here that might throw an exception. */
+} THEN {
+    /* Do some cleanup that should occur whether an exception is thrown or
+       not. After this code is run, the exception is propagated. */
+} END_AFTER
+
+These can be nested (even through function calls). Exceptions are thrown with:
+
+THROW(some_exception);
+
+Where some_exception is a void *. It is undefined as to the outcome of throwing 
+an exception from outside a TRY construct. Currently it is only possible to use 
+unwind with single threaded code, but all that is needed for multithreaded 
+usage is that the variables in unwind.c become thread local.
